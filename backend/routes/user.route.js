@@ -8,6 +8,10 @@ import {
 const router = Router();
 
 router.route("/register").post(registerUser);
+router.route("/loginUser")
+    .post(loginUser);
 
+router.route("/logout")
+    .post(isLoggedIn, logoutUser);
 export default router;
 
