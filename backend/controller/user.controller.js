@@ -79,7 +79,7 @@ const logoutUser = async (req, res) => {
     try {
         const userId = req.user?._id;
 
-        if(userId){
+        if (userId) {
             await User.findByIdAndUpdate(userId, { refreshToken: null });
         }
         res.clearCookie("accessToken", { httpOnly: true });
@@ -96,8 +96,22 @@ const logoutUser = async (req, res) => {
 
 const emailVerification = async (req, res) => {
     try {
+        const token = req.params.token;
 
+        const user = await User.findOne({
+            emailVerificationToken: token,
+            emailVerificationExpiry: { $gt: Date.now() },
+        })
 
+        if (!user) {
+            res.status(400).json({ message: "User created successfully. Verification email sent." });
+
+        }
+        user.isEmailVerified = true;
+        user.verificationToken = undefined;
+        user.verificationTokenExpiry = undefined;
+        await user.save();
+        res.status(200).json({ message: "User is verifies" });
     } catch (error) {
         console.error(error); // Log the error for debugging
         res.status(500).json({ message: "Email not verifies" });
@@ -106,8 +120,8 @@ const emailVerification = async (req, res) => {
 
 
 export {
-  loginUser,
-  logoutUser,
-  emailVerification,
-  registerUser,
+    loginUser,
+    logoutUser,
+    emailVerification,
+    registerUser,
 };
