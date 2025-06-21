@@ -34,8 +34,8 @@ const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const userexits = await User.findOne({ email });
-        if (!userexits) {
+        const user = await User.findOne({ email });
+        if (!user) {
             res.status(400).json({ message: "User not exits" });
         }
 
@@ -45,8 +45,29 @@ const loginUser = async (req, res) => {
             res.status(400).json({ message: "Pawwword not Matched" });
 
         }
+        if (!user.isEmailVerified) {
+            res.status(400).json({ message: "Email Not verified" });
+        }
 
-        
+
+        const accessToken = user.generateAccessToken();
+        const refreshToken = user.generateRefreshToken();
+
+        user.refreshToken = refreshToken;
+        await user.save();
+
+        const cookieOptions = {
+            httpOnly: true,
+        };
+
+
+        res.cookie("aceessToken", accessToken, cookieOptions);
+        res.cookie("refreshToken", refreshToken, cookieOptions);
+        res.status(200).json({
+            message: "Login successful.",
+            user,
+            success: true,
+        });
 
     } catch (error) {
         console.error(error); // Log the error for debugging
@@ -56,7 +77,17 @@ const loginUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
     try {
+        const userId = req.user?._id;
 
+        if(userId){
+            await User.findByIdAndUpdate(userId, { refreshToken: null });
+        }
+        res.clearCookie("accessToken", { httpOnly: true });
+        res.clearCookie("refreshToken", { httpOnly: true });
+        return res.status(200).json({
+            status: true,
+            message: "Logged out successfully.",
+        });
     } catch (error) {
         console.error(error); // Log the error for debugging
         res.status(500).json({ message: "Logout user" });
@@ -66,8 +97,17 @@ const logoutUser = async (req, res) => {
 const emailVerification = async (req, res) => {
     try {
 
+
     } catch (error) {
         console.error(error); // Log the error for debugging
         res.status(500).json({ message: "Email not verifies" });
     }
 }
+
+
+export {
+  loginUser,
+  logoutUser,
+  emailVerification,
+  registerUser,
+};
