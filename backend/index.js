@@ -1,0 +1,33 @@
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./db/db.js"
+
+const app = express();
+app.use(express.json());
+
+dotenv.config({
+    path: "./.env",
+});
+
+const PORT = process.env.PORT || 3001;
+
+app.use(cors({
+    origin: "http://localhost:5173", // Replace with your React app's URL
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"], // Allowed methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed request headers
+}));
+
+app.get("/", (req, res) => {
+    res.send("Hello Guys welcome");
+});
+
+connectDB()
+    .then(() => {
+        app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
+    })
+    .catch((err) => {
+        console.error("Mongodb connection error", err);
+        process.exit(1);
+    });
