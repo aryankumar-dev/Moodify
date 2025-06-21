@@ -1,4 +1,5 @@
-import User from "../models/user.model.js";
+import { User } from "../models/user.model.js";
+import { sendEmail, emailVerificationMailgenContent } from "../utils/mail.js";
 
 const registerUser = async (req, res) => {
 
@@ -19,7 +20,16 @@ const registerUser = async (req, res) => {
 
         await user.save();
 
-        // send email
+        const verificationUrl = `${process.env.FRONTEND_BASE_URL}/verifyEmail?token=${unHashedToken}&email=${email}`;
+
+        // Send verification email
+        await sendEmail({
+            email: user.email,
+            subject: "Verify your email",
+            mailgenContent: emailVerificationMailgenContent(user.username, verificationUrl),
+        });
+
+
         res.status(201).json({
             message: "User registered successfully",
             user, // Send if needed for testing; usually, you'd email this

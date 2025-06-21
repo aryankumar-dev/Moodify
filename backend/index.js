@@ -31,3 +31,10 @@ connectDB()
         console.error("Mongodb connection error", err);
         process.exit(1);
     });
+
+
+import authRouter from "./routes/user.route.js";
+import savedsongRouter from "./routes/saved.route.js";
+
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/songs", savedsongRouter);

@@ -1,4 +1,4 @@
-import SavedSchema from "../models/saved.model.js";
+import { SavedSchema } from "../models/saved.model.js";
 const savedSong = async (req, res) => {
     try {
         const { songname, songid, avatar } = req.body;
