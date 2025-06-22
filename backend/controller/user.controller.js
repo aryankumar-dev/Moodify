@@ -20,7 +20,7 @@ const registerUser = async (req, res) => {
 
         await user.save();
 
-        const verificationUrl = `${process.env.FRONTEND_BASE_URL}/verifyEmail?token=${unHashedToken}&email=${email}`;
+        const verificationUrl = `${process.env.FRONTEND_BASE_URL}/api/v1/auth/emailVerification/${hashedToken}`;
 
         // Send verification email
         await sendEmail({
@@ -33,6 +33,7 @@ const registerUser = async (req, res) => {
         res.status(201).json({
             message: "User registered successfully",
             user, // Send if needed for testing; usually, you'd email this
+            success:true,
         });
     } catch (error) {
         console.error(error); // Log the error for debugging
@@ -88,7 +89,7 @@ const loginUser = async (req, res) => {
 const logoutUser = async (req, res) => {
     try {
         const userId = req.user?._id;
-
+console.log(":logoutUser started");
         if (userId) {
             await User.findByIdAndUpdate(userId, { refreshToken: null });
         }
@@ -114,7 +115,7 @@ const emailVerification = async (req, res) => {
         })
 
         if (!user) {
-            res.status(400).json({ message: "User created successfully. Verification email sent." });
+            res.status(400).json({ message: "user not exits" });
 
         }
         user.isEmailVerified = true;
