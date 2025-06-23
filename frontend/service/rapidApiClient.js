@@ -11,12 +11,6 @@ class RapidApiClient {
     }
 
 
-
-
-    //   async getplaylist(playlist) {
-    //     return this.fetchData(`/playlist_tracks/${playlist}`
-    //   }
-
   async getPlaylist(id) {
     const url = `${this.baseURL}/playlist_tracks/`;
     const params = {
@@ -26,12 +20,14 @@ class RapidApiClient {
     };
 
     try {
-      const response = await axios.get(url, {
-         params: params,
+    
+     const response = await axios.get(url, {
+        params,
         headers: this.headers,
-       
       });
+
       return response.data;
+
     } catch (error) {
       console.error("RapidAPI Error:", error);
       throw error;
