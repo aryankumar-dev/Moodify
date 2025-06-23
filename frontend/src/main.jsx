@@ -8,6 +8,7 @@ import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import Getme from './components/Getme.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
+import Explore from './components/Explore.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/getme" element={<Getme />} />
+         <Route path="/explore" element={<Explore />} />
+
 
       </Routes>
     </BrowserRouter>

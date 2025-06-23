@@ -1,0 +1,10 @@
+.explore-moods{
+    color: black;
+    border: 2px solid black;
+    text-align: start; /* Or 'left' */
+}
+
+.exploremoods{
+    display: flex;
+    flex-direction: column;
+}
