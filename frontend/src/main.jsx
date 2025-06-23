@@ -7,6 +7,8 @@ import Signup from './components/Signup.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import Getme from './components/Getme.jsx';
+import Myfav from './components/Myfav.jsx';
+import Recommended from './components/Recommended.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
 import Explore from './components/Explore.jsx';
 
@@ -19,7 +21,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/getme" element={<Getme />} />
-         <Route path="/explore" element={<Explore />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/myfav" element={<Myfav />} />
+        <Route path="/recommended/:id" element={<Recommended />} />
 
 
       </Routes>
