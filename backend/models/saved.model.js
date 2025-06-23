@@ -13,7 +13,8 @@ const savedSchema = new Schema(
       required: true,
     },
     createdBy: {
-      type: Number,
+       type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     avatar: {

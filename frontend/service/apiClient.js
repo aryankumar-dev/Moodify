@@ -45,7 +45,7 @@ constructor() {
   }
 
   async getProfile() {
-    return this.customFetch("/auth/me");
+    return this.customFetch("/auth/getme");
   }
 }
 

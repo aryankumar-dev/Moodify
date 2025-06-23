@@ -4,7 +4,7 @@ import { User } from "../models/user.model.js";
 
 const isLoggedIn = async (req, res, next) => {
     try {
-        const accessToken = req.cookies.accessToken;
+        const accessToken = req.cookies.accessToken
         const refreshToken = req.cookies.refreshToken;
         console.log(`accessToken = ${accessToken}, refreshToken = ${refreshToken}`);
 

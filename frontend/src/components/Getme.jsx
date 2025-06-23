@@ -10,26 +10,31 @@ function GetMe() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // 2) Fetch profile once on mount
-  useEffect(() => {
-    async function fetchProfile() {
-      setLoading(true);
-      setError("");
-      try {
-        const data = await apiClient.getProfile();  // assuming getProfile() does GET /auth/me
-        // populate your states
-        setFullName(data.fullName || "");
-        setEmail(data.email || "");
-        setPassword(data.password || "");
-        setUsername(data.username || "");
-      } catch (err) {
-        setError(err.message || "Failed to load profile");
-      } finally {
-        setLoading(false);
+useEffect(() => {
+  async function fetchProfile() {
+    setLoading(true);
+    setError("");
+    try {
+      const response = await apiClient.getProfile(); // e.g., returns { user: { ... }, success: true }
+
+      if (response && response.user) {
+        const user = response.user;
+        setFullName(user.fullName || "");
+        setEmail(user.email || "");
+        setUsername(user.username || "");
+        // setPassword(user.password || ""); // if needed, but generally avoid
+      } else {
+        setError("User data not found");
       }
+    } catch (err) {
+      setError(err.message || "Failed to load profile");
+    } finally {
+      setLoading(false);
     }
-    fetchProfile();
-  }, []);
+  }
+
+  fetchProfile();
+}, []);
 
   // 3) Render
   return (

@@ -7,6 +7,7 @@ import Signup from './components/Signup.jsx';
 import Login from './components/Login.jsx';
 import Home from './components/Home.jsx';
 import Getme from './components/Getme.jsx';
+import 'bootstrap/dist/css/bootstrap.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

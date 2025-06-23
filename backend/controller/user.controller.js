@@ -33,7 +33,7 @@ const registerUser = async (req, res) => {
         res.status(201).json({
             message: "User registered successfully",
             user, // Send if needed for testing; usually, you'd email this
-            success:true,
+            success: true,
         });
     } catch (error) {
         console.error(error); // Log the error for debugging
@@ -89,7 +89,7 @@ const loginUser = async (req, res) => {
 const logoutUser = async (req, res) => {
     try {
         const userId = req.user?._id;
-console.log(":logoutUser started");
+        console.log(":logoutUser started");
         if (userId) {
             await User.findByIdAndUpdate(userId, { refreshToken: null });
         }
@@ -129,10 +129,39 @@ const emailVerification = async (req, res) => {
     }
 }
 
+const getme = async (req, res) => {
+
+    try {
+
+        const userId = req.user?._id;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res
+                .status(404)                      // 404 “Not Found” is more semantically correct than 401 here
+                .json({ message: "User not found" });
+        }
+
+
+        res.status(200).json({
+            message: "User is verifies",
+            user,
+            success: true,
+        });
+
+    } catch (error) {
+        console.error(error); // Log the error for debugging
+        res.status(500).json({ message: "Error In finding user" });
+    }
+
+
+}
+
 
 export {
     loginUser,
     logoutUser,
     emailVerification,
     registerUser,
+    getme,
 };
