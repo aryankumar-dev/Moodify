@@ -1,0 +1,29 @@
+.choosemood-box {
+    background: linear-gradient(155deg, #fb4a50, #c1ac62, #15490b);
+    height: 500px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.boxbtn {
+    background-color: rgb(78, 157, 246);
+    border-radius: 20px;
+
+}
+
+.moods {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+gap: 10px;
+
+}
+
+.moods button {
+   
+    border-radius: 20px;
+    color:black
+
+}
