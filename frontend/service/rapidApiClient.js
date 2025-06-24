@@ -2,7 +2,7 @@ import axios from "axios";
 
 class RapidApiClient {
     constructor() {
-        this.baseURL = "https://spotify23.p.rapidapi.com/api/v1";
+        this.baseURL = "https://spotify23.p.rapidapi.com";
         this.headers = {
             'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY,
             'x-rapidapi-host': import.meta.env.VITE_RAPIDAPI_HOST,

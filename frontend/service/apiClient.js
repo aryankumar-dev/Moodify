@@ -1,6 +1,6 @@
 class ApiClient {
 constructor() {
-    this.baseURL = "https://moodify-0lej.onrender.com";
+    this.baseURL = "https://moodify-0lej.onrender.com/api/v1";
     this.defaultHeaders = {
       "Content-Type": "application/json",
       Accept: "application/json",
