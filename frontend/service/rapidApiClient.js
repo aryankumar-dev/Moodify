@@ -4,8 +4,8 @@ class RapidApiClient {
     constructor() {
         this.baseURL = "https://spotify23.p.rapidapi.com";
         this.headers = {
-            'x-rapidapi-key': '86da03215dmshbca3ad8efc48440p17d35bjsnfb189da6ef35',
-            'x-rapidapi-host': 'spotify23.p.rapidapi.com',
+            'x-rapidapi-key': import.meta.env.VITE_RAPIDAPI_KEY,
+            'x-rapidapi-host': import.meta.env.VITE_RAPIDAPI_HOST,
             "Content-Type": "application/json",
         };
     }
