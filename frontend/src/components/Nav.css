@@ -1,4 +1,10 @@
-.navbar{
-   
-    padding: 10px !important;
+.nav-link {
+    margin-left: 15px;
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
 }
