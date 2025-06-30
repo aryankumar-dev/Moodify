@@ -11,6 +11,7 @@ import Myfav from './components/Myfav.jsx';
 import Recommended from './components/Recommended.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
 import Explore from './components/Explore.jsx';
+import VerifyEmail from './components/VerifyEmail.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,7 +25,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/explore" element={<Explore />} />
         <Route path="/myfav" element={<Myfav />} />
         <Route path="/recommended/:id" element={<Recommended />} />
-
+     <Route path="/verifyEmail/:token" element={<VerifyEmail />} />
 
       </Routes>
     </BrowserRouter>

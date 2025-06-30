@@ -108,7 +108,7 @@ const logoutUser = async (req, res) => {
 const emailVerification = async (req, res) => {
     try {
         const token = req.params.token;
-
+  console.log("email constreoller");
         const user = await User.findOne({
             emailVerificationToken: token,
             emailVerificationExpiry: { $gt: Date.now() },

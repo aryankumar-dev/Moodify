@@ -47,6 +47,12 @@ constructor() {
   async getProfile() {
     return this.customFetch("/auth/getme");
   }
+
+   async verifyEmail(token) {
+    return this.customFetch(`/auth/verifyEmail/${token}`, {
+      method: "GET",
+    });
+  }
 }
 
 const apiClient = new ApiClient();
