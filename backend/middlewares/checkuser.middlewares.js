@@ -56,8 +56,8 @@ const isLoggedIn = async (req, res, next) => {
             console.log("else");
             // ✅ VERIFY ACCESS TOKEN
             const accessDecoded = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-            console.log("Decoded access token:", accessDecoded);
-            const user = await User.findOne({ _id: accessDecoded.id }); // ✅ FIXED HERE
+            console.log("Decoded access token :", accessDecoded);
+           const user = await User.findOne({ _id: accessDecoded._id });
 
             if (!user) {
 
