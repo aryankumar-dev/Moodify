@@ -12,7 +12,7 @@ dotenv.config({
 });
 
 const PORT = process.env.PORT || 3001;
- const allowedOrigins = process.env.CLIENT_ORIGIN.split(',');
+ const allowedOrigins = process.env.CLIENT_ORIGIN;
 app.use(cors({
     origin: allowedOrigins, // Replace with your React app's URL
     credentials: true,
