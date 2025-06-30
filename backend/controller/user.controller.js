@@ -20,7 +20,7 @@ const registerUser = async (req, res) => {
 
         await user.save();
 
-        const verificationUrl = `${process.env.FRONTEND_BASE_URL}/api/v1/auth/emailVerification/${hashedToken}`;
+        const verificationUrl = `${process.env.CLIENT_ORIGIN}/api/v1/auth/emailVerification/${hashedToken}`;
 
         // Send verification email
         await sendEmail({
