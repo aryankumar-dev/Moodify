@@ -9,9 +9,7 @@ const VerifyEmail = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const data = await apiClient.customFetch(`/auth/verifyEmail/${token}`, {
-          method: 'GET',
-        });
+        const data = await apiClient.verifyEmail(token);  // ✅ Clean, reusable
 
         if (data.success) {
           alert('Email verified successfully!');
