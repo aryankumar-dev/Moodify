@@ -3,7 +3,7 @@ import { sendEmail, emailVerificationMailgenContent } from "../utils/mail.js";
 
 const registerUser = async (req, res) => {
 
-    try {
+    try { 
         const { email, username, password, fullName } = req.body;
         const userexits = await User.findOne({ email });
 
