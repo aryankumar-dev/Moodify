@@ -9,6 +9,7 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
+      const [message, setMessage] = useState('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -20,8 +21,9 @@ function Signup() {
         try {
             const data = await apiClient.signup(fullName, email, password, username);
             if (data.success) {
-                navigate("/login");
+                setMessage('Account Created , Check your email for verification and then login');
             } else {
+                   setMessage('');
                 setError(data.message || "Signup failed");
             }
         } catch (error) {
@@ -89,6 +91,7 @@ function Signup() {
                     {loading ? "Signing up..." : "Signup"}
                 </button>
             </form>
+                {message && <p className="success-message">{message}</p>}
         </div>
     );
 }
