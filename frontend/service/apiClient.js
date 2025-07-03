@@ -49,7 +49,7 @@ constructor() {
   }
 
    async verifyEmail(token) {
-    return this.customFetch(`/auth/verifyEmail/${token}`, {
+    return this.customFetch(`/auth/emailVerification/${token}`, {
       method: "GET",
     });
   }

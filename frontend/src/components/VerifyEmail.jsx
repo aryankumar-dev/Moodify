@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import apiClient from '../api/ApiClient'; // Adjust path as needed
+import apiClient from '../../service/apiClient.js'; // Adjust path as needed
 
 const VerifyEmail = () => {
   const { token } = useParams();
