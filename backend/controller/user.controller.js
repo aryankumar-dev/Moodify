@@ -69,9 +69,11 @@ const loginUser = async (req, res) => {
         user.refreshToken = refreshToken;
         await user.save();
 
-        const cookieOptions = {
-            httpOnly: true,
-        };
+   const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
+    };
 
 
         res.cookie("aceessToken", accessToken, cookieOptions);

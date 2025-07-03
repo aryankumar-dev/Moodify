@@ -10,6 +10,8 @@ const ProtectedRoute = ({ children }) => {
         const res = await fetch(`https://moodify-0lej.onrender.com/api/v1/auth/getme`, {
           credentials: 'include',
         });
+
+        console.log(res);
         const data = await res.json();
         if (res.ok && data.userdata) {
           setAuth(true);
