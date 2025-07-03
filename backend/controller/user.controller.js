@@ -68,12 +68,11 @@ const loginUser = async (req, res) => {
 
         user.refreshToken = refreshToken;
         await user.save();
-
-   const cookieOptions = {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "None",
-    };
+const cookieOptions = {
+  httpOnly: true,
+  secure: true,    // Required for HTTPS across domains
+  sameSite: "None",
+};
 
 
         res.cookie("accessToken", accessToken, cookieOptions);

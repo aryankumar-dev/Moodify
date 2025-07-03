@@ -8,11 +8,12 @@ const isLoggedIn = async (req, res, next) => {
 
     console.log(`accessToken = ${accessToken}, refreshToken = ${refreshToken}`);
 
-    const cookieOptions = {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "None",
-    };
+  const cookieOptions = {
+  httpOnly: true,
+  secure: true,    // Required for HTTPS across domains
+  sameSite: "None",
+};
+
 
     if (!accessToken) {
       console.log("Access token missing, checking refresh token...");
