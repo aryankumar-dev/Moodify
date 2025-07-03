@@ -21,9 +21,8 @@ function Signup() {
         try {
             const data = await apiClient.signup(fullName, email, password, username);
             if (data.success) {
-                setMessage('Account Created , Check your email for verification and then login');
+                navigate("/login");
             } else {
-                   setMessage('');
                 setError(data.message || "Signup failed");
             }
         } catch (error) {
@@ -91,7 +90,6 @@ function Signup() {
                     {loading ? "Signing up..." : "Signup"}
                 </button>
             </form>
-                {message && <p className="success-message">{message}</p>}
         </div>
     );
 }

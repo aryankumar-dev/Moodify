@@ -63,6 +63,8 @@ function Login() {
                     {loading ? "Logging in..." : "Login"}
                 </button>
             </form>
+
+            <p>Account Created , Check your email for verification and then login</p>
         </div>
     );
 }
