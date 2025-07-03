@@ -12,21 +12,24 @@ import Recommended from './components/Recommended.jsx';
 import 'bootstrap/dist/css/bootstrap.css';
 import Explore from './components/Explore.jsx';
 import VerifyEmail from './components/VerifyEmail.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/getme" element={<Getme />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/myfav" element={<Myfav />} />
-        <Route path="/recommended/:id" element={<Recommended />} />
-     <Route path="/verifyEmail/:token" element={<VerifyEmail />} />
-
+        <Route path="/login" element={<Login />} />
+        
+        {/* Protected Routes */}
+        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/getme" element={<ProtectedRoute><Getme /></ProtectedRoute>} />
+        <Route path="/explore" element={<ProtectedRoute><Explore /></ProtectedRoute>} />
+        <Route path="/myfav" element={<ProtectedRoute><Myfav /></ProtectedRoute>} />
+        <Route path="/recommended/:id" element={<ProtectedRoute><Recommended /></ProtectedRoute>} />
+        
+        <Route path="/verifyEmail/:token" element={<VerifyEmail />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
