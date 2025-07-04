@@ -8,12 +8,14 @@ function Login() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError("");
+        setSuccessMessage("");
 
         try {
             const data = await apiClient.login(email, password);
@@ -31,40 +33,52 @@ function Login() {
 
     return (
         <div className="login-container">
-            <h1>Welcome Back</h1>
-            {error && <div className="error-msg">{error}</div>}
+            <div className="login-card">
+                <h2 className="login-title">Welcome Back</h2>
 
-            <form className="login-form" onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        placeholder="Enter your email"
-                    />
+                {error && <div className="error-msg">{error}</div>}
+                {successMessage && <div className="success-msg">{successMessage}</div>}
+
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            placeholder="Enter your email"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Enter your password"
+                        />
+                    </div>
+
+                    <button type="submit" className="login-btn" disabled={loading}>
+                        {loading ? "Logging in..." : "Login"}
+                    </button>
+                </form>
+
+                <div className="login-footer">
+                    <p>Don't have an account?</p>
+                    <button
+                        className="register-btn"
+                        onClick={() => navigate("/register")}
+                    >
+                        Register
+                    </button>
                 </div>
-
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        placeholder="Enter your password"
-                    />
-                </div>
-
-                <button type="submit" disabled={loading}>
-                    {loading ? "Logging in..." : "Login"}
-                </button>
-            </form>
-
-            <p>Account Created , Check your email for verification and then login</p>
+            </div>
         </div>
     );
 }
