@@ -9,7 +9,7 @@ function Signup() {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [loading, setLoading] = useState(false);
-      const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('');
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -90,6 +90,14 @@ function Signup() {
                     {loading ? "Signing up..." : "Signup"}
                 </button>
             </form>
+
+            <p>
+                Already have an account?
+                <button className="login-btn" onClick={() => navigate('/login')}>
+                    Login
+                </button>
+            </p>
+
         </div>
     );
 }
