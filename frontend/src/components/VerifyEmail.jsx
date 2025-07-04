@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import apiClient from '../../service/apiClient.js'; // Adjust path as needed
+import apiClient from '../../service/apiClient.js'; 
 
 
 const VerifyEmail = () => {
@@ -29,7 +29,7 @@ const VerifyEmail = () => {
 
   return (
     <div>
-      <h2>Verifying your email.....</h2>
+      <h2>Verifying your email....</h2>
     </div>
   );
 };
