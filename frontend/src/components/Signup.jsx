@@ -93,7 +93,7 @@ function Signup() {
 
             <p>
                 Already have an account?
-                <button className="" onClick={() => navigate('/login')}>
+                <button className="login-btn" onClick={() => navigate('/login')}>
                     Login
                 </button>
             </p>

@@ -73,7 +73,7 @@ function Login() {
                     <p>Don't have an account?</p>
                     <button
                         className="register-btn"
-                        onClick={() => navigate("/register")}
+                        onClick={() => navigate("/signup")}
                     >
                         Register
                     </button>
