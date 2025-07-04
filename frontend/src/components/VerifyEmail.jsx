@@ -29,7 +29,7 @@ const VerifyEmail = () => {
 
   return (
     <div>
-      <h2>Verifying your email...</h2>
+      <h2>Verifying your email.....</h2>
     </div>
   );
 };
