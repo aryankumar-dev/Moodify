@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const VerifyEmail = () => {
   const { token } = useParams();
   const navigate = useNavigate();
-    const navigate = useNavigate();
+
   useEffect(() => {
     const verifyEmail = async () => {
       try {
